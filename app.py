@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
-from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
 
-app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'veritabani.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
 
 # ayarlar
 app.secret_key = 'guns_lol_projesi_cok_gizli'  # Oturum güvenliği için
@@ -23,8 +25,6 @@ class Kullanici(db.Model):
 
 # veritabanı
 with app.app_context():
-    if not os.path.exists('instance'):
-        os.makedirs('instance')
     db.create_all()
 
 # anasayfa
