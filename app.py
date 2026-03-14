@@ -110,5 +110,5 @@ def profil_sayfasi(username):
     return "<h1>404</h1><p>Kullanıcı bulunamadı!</p>", 404
 if __name__ == '__main__':
     import os
-    port = int(os.environ.get("PORT", 5000)
+    port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
