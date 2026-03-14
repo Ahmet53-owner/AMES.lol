@@ -23,8 +23,9 @@ class Kullanici(db.Model):
 
 # veritabanı
 with app.app_context():
+    if not os.path.exists('instance'):
+        os.makedirs('instance')
     db.create_all()
-
 
 # anasayfa
 @app.route('/')
